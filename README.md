@@ -1,4 +1,8 @@
 # React-starter
+<h2>Get Started</h2>
+<p>1. Install Node Packages. - npm install</p>
+<p>2. Run the app. - npm start</p>
+<p>3. Production Build. - npm run build</p>
 <h4>Features</h4>
 <p>
 	Grid Styles is by Skeleton. If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>
