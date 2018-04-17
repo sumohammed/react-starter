@@ -1,23 +1,20 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const extractSTYLUS = require('extract-text-webpack-plugin');
+const extractCSS = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-  	app:'./src/index.js',
+    app:'./src/index.js',
   },
   plugins: [
     new CleanWebpackPlugin([
       'dist/public',
       'dist/*.html'
     ]),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common' // Specify the common bundle's name.
-    }),
-    new extractSTYLUS('public/stylesheets/[name].css'),
+    new extractCSS('public/stylesheets/[name].css'), 
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html',
       filename: 'index.html',
@@ -33,18 +30,11 @@ module.exports = {
      rules: [
        {
         test: /\.(styl|css)$/i,
-        use: extractSTYLUS.extract({
+        use: extractCSS.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: true
-              }
-            }, 
-            {
-              loader: 'stylus-loader',
               options: {
                 minimize: true,
                 sourceMap: true
@@ -54,7 +44,7 @@ module.exports = {
         })
        },
        {
-  	    test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: [
           {
             loader: 'file-loader',
